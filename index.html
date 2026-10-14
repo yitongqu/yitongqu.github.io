@@ -1,14 +1,13 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yitong Qu | Portfolio</title>
+  <title>Yitong Qu</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">  <style>
     /* Font: Baskervville, styled after lovefrom.com: black, heavier, larger body text.
        Weights: 600 SemiBold (body text), 500 Medium (small gray text), 700 Bold (headings) */
     :root {
@@ -62,11 +61,9 @@
     .download svg { width: 14px; height: 14px; }
 
     /* ---------- Gallery ---------- */
-    .gallery h2 { font-size: 17px; font-weight: 700; margin-bottom: 24px; }
-    .frame {
+    .gallery h2 { font-size: 17px; font-weight: 600; margin-bottom: 24px; } /* same as the bio line */    .frame {
       position: relative;
       aspect-ratio: 420 / 297; /* A3 landscape, same as the portfolio pages */
-      overflow: hidden;
       user-select: none;
     }
     .frame img {
@@ -75,16 +72,17 @@
       transition: opacity .25s;
     }
     .frame img.fading { opacity: 0; }
+    /* Minimal black chevrons, outside the image on both sides */
     .arrow {
       position: absolute; top: 50%; transform: translateY(-50%);
-      width: 44px; height: 44px; border-radius: 50%;
-      border: none; cursor: pointer;
-      background: rgba(0,0,0,.45); color: #fff; font-size: 22px;
+      width: 44px; height: 44px; padding: 6px;
+      border: none; background: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
     }
-    .arrow:hover { background: rgba(0,0,0,.7); }
-    .arrow.prev { left: 12px; }
-    .arrow.next { right: 12px; }
+    .arrow svg { width: 22px; height: 22px; fill: none; stroke: var(--text); stroke-width: 4.1; stroke-linecap: round; stroke-linejoin: round; }
+    .arrow:hover { opacity: .5; }
+    .arrow.prev { left: -64px; }
+    .arrow.next { right: -64px; }
     .info { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; margin-top: 12px; }
     .caption { font-size: 15px; font-weight: 600; }
     .counter { justify-self: end; color: var(--muted); font-size: 13px; font-weight: 500; white-space: nowrap; font-variant-numeric: tabular-nums; }
@@ -99,8 +97,6 @@
     /* ---------- Resume ---------- */
     .resume { margin-top: 200px; font-size: 15px; line-height: 1.5; }
     .entry > p, .entry ul { max-width: 760px; } /* keep long lines readable in the wide column */
-    .resume-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 56px; }
-    .resume-heading h2 { font-size: 17px; font-weight: 700; }
     .resume-top { display: grid; grid-template-columns: 3fr 2fr; gap: 64px; }
     .resume-top .resume-section p + p { margin-top: 6px; }
     /* Skill areas: one per line, with a gap above to separate them from the software lists */
@@ -136,19 +132,20 @@
       main { padding: 140px 28px 72px; }
       .intro { min-height: calc(100vh - 184px); min-height: calc(100svh - 184px); padding-bottom: 60px; }
       .intro .bio { margin-top: 44px; font-size: 16px; }
+      .gallery h2 { font-size: 16px; } /* match the bio */
       .download-row { margin-top: 60px; }
       footer { margin-top: 140px; }
       .resume { margin-top: 120px; }
       .resume-top { grid-template-columns: 1fr; gap: 48px; }
-      .resume-heading { margin-bottom: 40px; }
       .resume-section + .resume-section, .resume-top + .resume-section { margin-top: 48px; }
       .resume-top .resume-section { margin-top: 0; }
       .entry-head { flex-direction: column; gap: 0; }
       .intro h1 { font-size: 24px; }
       .intro, .gallery, .resume { width: 90%; } /* phones: 2/3 would be too small */
-      .arrow { width: 32px; height: 32px; font-size: 18px; }
-      .arrow.prev { left: 8px; }
-      .arrow.next { right: 8px; }
+      .arrow { width: 32px; height: 32px; padding: 4px; }
+      .arrow svg { width: 16px; height: 16px; }
+      .arrow.prev { left: -34px; }
+      .arrow.next { right: -34px; }
       .caption { font-size: 14px; }
       .counter { font-size: 12px; }
       /* Phones: 14 dots take most of the width, so the page number goes under them */
@@ -184,11 +181,15 @@
 
     <!-- ========== GALLERY ========== -->
     <section class="gallery">
-      <h2>Scroll left or right</h2>
+      <h2>Scroll down to see more</h2>
       <div class="frame" id="frame">
         <img id="photo" src="" alt="">
-        <button class="arrow prev" id="prev" aria-label="Previous image">‹</button>
-        <button class="arrow next" id="next" aria-label="Next image">›</button>
+        <button class="arrow prev" id="prev" aria-label="Previous image">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 3 6 12l9 9"/></svg>
+        </button>
+        <button class="arrow next" id="next" aria-label="Next image">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 3 9 9-9 9"/></svg>
+        </button>
       </div>
       <!-- One row under the image: caption (left), dots (center), page number (right) -->
       <div class="info">
@@ -200,10 +201,6 @@
 
     <!-- ========== RESUME: text from the resume PDF. Edit it here when the resume changes ========== -->
     <section class="resume">
-      <div class="resume-heading">
-        <h2>Résumé</h2>
-      </div>
-
       <div class="resume-top">
         <div class="resume-section">
           <h3>Summary</h3>
@@ -339,7 +336,7 @@
     // ========== YOUR WORK: add or remove images here ==========
     // file:  the image's file name inside the "images" folder
     // title: the caption shown under the image (leave "" for none)
-    // Pages come from the Portfolio_Qu_2026 PDFs (02-15), converted to 1600px JPEGs.
+    // Pages come from the Portfolio_Qu_2026 PDFs (02-15), converted to 4000px JPEGs.
     // The list order is the display order. Hyperloop (pages 05-06) goes first.
     const works = [
       { file: "work-05.jpg", title: "" },
@@ -411,6 +408,66 @@
     });
 
     show(0);
+
+    // ---------- Full-screen paging (computers only) ----------
+    // One wheel step glides between the intro and the gallery (image + dots centered).
+    // The glide starts slow, goes very fast in the middle, and slows down again at the end.
+    // From the gallery down to the résumé, the page scrolls normally.
+    const PAGE_TIME = 775;    // length of one glide in milliseconds
+    const desktop = matchMedia("(min-width: 601px) and (pointer: fine)");
+    let gliding = false, quietUntil = 0;
+
+    // Where the gallery screen stops: image + dots centered, but always past the gallery heading
+    function galleryStop() {
+      const info = document.querySelector(".info");
+      const imageAndDots = info.getBoundingClientRect().bottom - frame.getBoundingClientRect().top;
+      return Math.max(frame.getBoundingClientRect().top + scrollY - Math.max(16, (innerHeight - imageAndDots) / 2),
+                      document.querySelector(".gallery h2").getBoundingClientRect().bottom + scrollY + 4);
+    }
+
+    // Slow -> very fast -> slow (ease-in-out, 3rd power: a 5th-power start felt like a delay)
+    const ease = t => t < .5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2;
+
+    function glideTo(target) {
+      const from = scrollY, dist = target - from, t0 = performance.now();
+      gliding = true;
+      (function step(now) {
+        const t = Math.min(1, (now - t0) / PAGE_TIME);
+        scrollTo(0, from + dist * ease(t));
+        if (t < 1) requestAnimationFrame(step);
+        else { gliding = false; quietUntil = performance.now() + 200; } // swallow trackpad momentum
+      })(t0);
+    }
+
+    // Returns where to glide for a step up (-1) or down (+1), or null to let the page scroll normally
+    function pageTarget(dir) {
+      const gallery = galleryStop(), y = scrollY;
+      if (dir > 0 && y < gallery - 2) return gallery;
+      if (dir < 0 && y <= gallery + 2 && y > 2) return 0;
+      return null;
+    }
+
+    addEventListener("wheel", e => {
+      if (!desktop.matches || e.ctrlKey || Math.abs(e.deltaY) < Math.abs(e.deltaX)) return;
+      if (gliding || performance.now() < quietUntil) {
+        if (scrollY < galleryStop() + 2) { e.preventDefault(); if (!gliding) quietUntil = performance.now() + 200; }
+        return;
+      }
+      const target = pageTarget(Math.sign(e.deltaY));
+      if (target === null) return;
+      e.preventDefault();
+      glideTo(target);
+    }, { passive: false });
+
+    addEventListener("keydown", e => {
+      if (!desktop.matches || gliding) return;
+      const dir = { ArrowDown: 1, PageDown: 1, " ": 1, ArrowUp: -1, PageUp: -1 }[e.key];
+      if (!dir || (e.key === " " && e.shiftKey)) return;
+      const target = pageTarget(dir);
+      if (target === null) return;
+      e.preventDefault();
+      glideTo(target);
+    });
   </script>
 </body>
 </html>
