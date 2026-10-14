@@ -57,7 +57,9 @@
       display: inline-flex; align-items: center; gap: 8px;
       color: var(--text); text-decoration: none; font-size: 15px; font-weight: 600;
     }
-    .download:hover { opacity: .6; }
+    /* Hover: grow slightly from the center of the text */
+    .download { transition: transform .2s ease; transform-origin: center; }
+    .download:hover { transform: scale(1.05); }
     .download svg { width: 14px; height: 14px; }
 
     /* ---------- Gallery ---------- */
